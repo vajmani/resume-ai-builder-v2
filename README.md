@@ -1,4 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resume AI Builder v2.0 🌟
+
+**Mental health-focused resume building that lifts you up, not burns you out**
+
+## ✨ Phase 1 Features
+
+- **Encouraging Form Interface** - Positive validation messages and uplifting micro-copy
+- **Progress Celebrations** - Animated celebrations with confetti and achievement badges  
+- **Daily Affirmations** - Rotating motivational messages in the header
+- **Break Reminders** - Wellness-focused 20-minute break notifications
+- **PDF Export** - Professional resume generation with encouraging completion messages
+- **Local Storage** - Automatic draft saving to prevent data loss
+
+## 🚀 Live Demo
+
+Visit: [https://resume-ai-builder-v2.vercel.app/](https://resume-ai-builder-v2.vercel.app/)
+
+## 🎯 Mental Health Focus
+
+This resume builder is designed with psychological safety in mind:
+- No harsh error messages - only gentle guidance
+- Confidence-building language throughout
+- Wellness integration with break reminders
+- Celebratory animations that make users feel accomplished
+
+## 🛠️ Tech Stack
+
+- **Next.js 15** + TypeScript
+- **React Hook Form** + Zod validation
+- **Tailwind CSS** + Framer Motion
+- **React Hot Toast** for positive notifications
+
+## 📋 Development Phases
+
+### Phase 1: ✅ Complete
+Uplifting form-based resume builder with mental health elements
+
+### Phase 2: 🚀 Coming Next
+- Live preview with encouraging real-time feedback
+- 3 psychology-informed templates
+- Success story integration
+- Mood-based color schemes
+
+---
+
+*Building the future of mental health-conscious career tools* 💚
 
 ## Getting Started
 
@@ -15,22 +60,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
