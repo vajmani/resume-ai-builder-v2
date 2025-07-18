@@ -1,103 +1,130 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { Header } from '@/components/Header';
+import { PersonalInfoForm } from '@/components/PersonalInfoForm';
+import { ProgressCelebration } from '@/components/ProgressCelebration';
+import { AchievementBadge } from '@/components/AchievementBadge';
+import { ExportButton } from '@/components/ExportButton';
+import { useResumeForm } from '@/hooks/useResumeForm';
+import { useBreakReminder } from '@/hooks/useBreakReminder';
+import { PersonalInfoFormData } from '@/lib/validations';
+import { getCompletionMessage } from '@/utils/affirmations';
+import toast from 'react-hot-toast';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [celebrationMessage, setCelebrationMessage] = useState('');
+  const [showBadge, setShowBadge] = useState(false);
+  const [currentBadge, setCurrentBadge] = useState('');
+  const [currentSection, setCurrentSection] = useState('personalInfo');
+  
+  const {
+    resumeData,
+    isLoading,
+    updateResumeData,
+    completeSection,
+    getProgressPercentage,
+    getCompletedSections,
+  } = useResumeForm();
+  
+  useBreakReminder();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    if (!isLoading && !getCompletedSections().includes('personalInfo')) {
+      setCurrentBadge('first-step');
+      setShowBadge(true);
+      toast.success('Welcome to your resume building journey! 🌟', {
+        duration: 4000,
+        style: {
+          background: '#10B981',
+          color: 'white',
+        },
+      });
+    }
+  }, [isLoading, getCompletedSections]);
+
+  const handlePersonalInfoSubmit = (data: PersonalInfoFormData) => {
+    updateResumeData({ personalInfo: data });
+    
+    setTimeout(() => {
+      completeSection('personalInfo', 'personal-complete');
+      setCelebrationMessage(getCompletionMessage('personalInfo'));
+      setShowCelebration(true);
+      
+      setTimeout(() => {
+        setCurrentBadge('personal-complete');
+        setShowBadge(true);
+      }, 2000);
+    }, 500);
+  };
+
+  const handleNext = () => {
+    toast.success('Ready for the next step! 🚀', {
+      duration: 3000,
+      style: {
+        background: '#3B82F6',
+        color: 'white',
+      },
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Loading your amazing resume builder... ✨</p>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+      <Toaster position="top-right" />
+      
+      <Header progressPercentage={getProgressPercentage()} />
+      
+      <main className="container mx-auto py-8">
+        {currentSection === 'personalInfo' && (
+          <PersonalInfoForm
+            initialData={resumeData.personalInfo}
+            onSubmit={handlePersonalInfoSubmit}
+            onNext={handleNext}
+          />
+        )}
+        
+        {/* Placeholder for other sections */}
+        {currentSection !== 'personalInfo' && (
+          <div className="max-w-4xl mx-auto p-6 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              More sections coming soon! 🚀
+            </h2>
+            <p className="text-gray-600 mb-8">
+              You&apos;ve completed the personal information section. More form sections will be added in the next phase.
+            </p>
+            <ExportButton
+              resumeData={resumeData}
+              completedSections={getCompletedSections()}
+              disabled={getCompletedSections().length === 0}
+            />
+          </div>
+        )}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      
+      <ProgressCelebration
+        isVisible={showCelebration}
+        message={celebrationMessage}
+        onComplete={() => setShowCelebration(false)}
+      />
+      
+      <AchievementBadge
+        badgeId={currentBadge}
+        isVisible={showBadge}
+        onClose={() => setShowBadge(false)}
+      />
     </div>
   );
 }
