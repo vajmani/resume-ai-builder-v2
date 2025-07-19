@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { personalInfoSchema, PersonalInfoFormData } from '@/lib/validations';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { formatPhoneNumber, unformatPhoneNumber } from '@/utils/phoneFormat';
 
 interface PersonalInfoFormProps {
   initialData?: Partial<PersonalInfoFormData>;
@@ -18,12 +19,14 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   onNext,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneDisplay, setPhoneDisplay] = useState(initialData?.phone ? formatPhoneNumber(initialData.phone) : '');
   
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     watch,
+    setValue,
   } = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: initialData,
@@ -151,6 +154,13 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               <input
                 {...register('phone')}
                 type="tel"
+                value={phoneDisplay}
+                onChange={(e) => {
+                  const formatted = formatPhoneNumber(e.target.value);
+                  const unformatted = unformatPhoneNumber(formatted);
+                  setPhoneDisplay(formatted);
+                  setValue('phone', unformatted, { shouldValidate: true });
+                }}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 placeholder="(555) 123-4567"
               />

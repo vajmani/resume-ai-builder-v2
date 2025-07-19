@@ -4,7 +4,7 @@ export const personalInfoSchema = z.object({
   firstName: z.string().min(1, "Let's add your first name to get started! ✨"),
   lastName: z.string().min(1, "Let's complete your name - what's your last name? 💫"),
   email: z.string().email("Let's polish your email format - it should look like name@example.com 📧"),
-  phone: z.string().min(10, "Let's make sure your phone number is complete so employers can reach you 📱"),
+  phone: z.string().regex(/^\d{10,11}$/, "Let's make sure your phone number has 10-11 digits so employers can reach you 📱"),
   address: z.string().min(1, "Let's add your address to show you're ready for opportunities 🏠"),
   city: z.string().min(1, "Let's add your city - which wonderful place do you call home? 🌆"),
   state: z.string().min(1, "Let's include your state to complete your location 🗺️"),
