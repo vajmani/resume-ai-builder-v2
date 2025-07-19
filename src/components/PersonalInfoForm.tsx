@@ -251,13 +251,38 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Professional Summary ⭐
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Professional Summary ⭐
+                </label>
+                <div className="flex items-center space-x-2 text-sm">
+                  <span className={`font-medium ${
+                    (formData.summary?.length || 0) > 500 
+                      ? 'text-red-500' 
+                      : (formData.summary?.length || 0) > 450 
+                        ? 'text-amber-500' 
+                        : 'text-gray-500'
+                  }`}>
+                    {formData.summary?.length || 0}/500
+                  </span>
+                  {(formData.summary?.length || 0) > 500 && (
+                    <span className="text-red-500 text-xs">📝 Over limit</span>
+                  )}
+                  {(formData.summary?.length || 0) > 450 && (formData.summary?.length || 0) <= 500 && (
+                    <span className="text-amber-500 text-xs">⚡ Almost there</span>
+                  )}
+                </div>
+              </div>
               <textarea
                 {...register('summary')}
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                  (formData.summary?.length || 0) > 500
+                    ? 'border-red-300 focus:ring-red-500'
+                    : (formData.summary?.length || 0) > 450
+                      ? 'border-amber-300 focus:ring-amber-500'
+                      : 'border-gray-300 focus:ring-blue-500'
+                }`}
                 placeholder="Tell us about your amazing journey and what makes you unique. This is where you shine!"
               />
               {errors.summary && (
@@ -268,6 +293,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               )}
               <p className="mt-1 text-sm text-gray-500">
                 Share your story - your experience, passion, and what drives you professionally.
+                {(formData.summary?.length || 0) > 450 && (formData.summary?.length || 0) <= 500 && (
+                  <span className="text-amber-600 ml-1">Almost at the sweet spot! ✨</span>
+                )}
+                {(formData.summary?.length || 0) > 500 && (
+                  <span className="text-red-600 ml-1">Let&apos;s keep it focused and impactful! 🎯</span>
+                )}
               </p>
             </div>
           </div>

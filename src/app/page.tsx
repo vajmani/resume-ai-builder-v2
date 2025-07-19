@@ -19,6 +19,7 @@ export default function Home() {
   const [showBadge, setShowBadge] = useState(false);
   const [currentBadge, setCurrentBadge] = useState('');
   const [currentSection, setCurrentSection] = useState('personalInfo');
+  const [hasShownWelcome, setHasShownWelcome] = useState(false);
   
   const {
     resumeData,
@@ -32,9 +33,10 @@ export default function Home() {
   useBreakReminder();
 
   useEffect(() => {
-    if (!isLoading && !getCompletedSections().includes('personalInfo')) {
+    if (!isLoading && !getCompletedSections().includes('personalInfo') && !hasShownWelcome) {
       setCurrentBadge('first-step');
       setShowBadge(true);
+      setHasShownWelcome(true);
       toast.success('Welcome to your resume building journey! 🌟', {
         duration: 4000,
         style: {
@@ -43,7 +45,7 @@ export default function Home() {
         },
       });
     }
-  }, [isLoading, getCompletedSections]);
+  }, [isLoading, getCompletedSections, hasShownWelcome]);
 
   const handlePersonalInfoSubmit = (data: PersonalInfoFormData) => {
     updateResumeData({ personalInfo: data });
@@ -61,11 +63,14 @@ export default function Home() {
   };
 
   const handleNext = () => {
-    toast.success('Ready for the next step! 🚀', {
-      duration: 3000,
+    setCurrentSection('completed');
+    toast.success('Fantastic work! Check out your progress below! 🎉', {
+      duration: 5000,
       style: {
         background: '#3B82F6',
         color: 'white',
+        padding: '16px',
+        borderRadius: '8px',
       },
     });
   };
@@ -96,20 +101,55 @@ export default function Home() {
           />
         )}
         
-        {/* Placeholder for other sections */}
-        {currentSection !== 'personalInfo' && (
-          <div className="max-w-4xl mx-auto p-6 text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              More sections coming soon! 🚀
-            </h2>
-            <p className="text-gray-600 mb-8">
-              You&apos;ve completed the personal information section. More form sections will be added in the next phase.
-            </p>
-            <ExportButton
-              resumeData={resumeData}
-              completedSections={getCompletedSections()}
-              disabled={getCompletedSections().length === 0}
-            />
+        {/* Completion section */}
+        {currentSection === 'completed' && (
+          <div className="max-w-4xl mx-auto p-6">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 border-b">
+                <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                  🎉 Congratulations! You&apos;re Amazing!
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  You&apos;ve completed the personal information section! You&apos;re building something incredible.
+                </p>
+                
+                <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-700">Overall Progress</span>
+                    <span className="text-sm font-bold text-green-600">{getProgressPercentage()}% Complete</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-gradient-to-r from-green-500 to-blue-500 h-3 rounded-full transition-all duration-500"
+                      style={{ width: `${getProgressPercentage()}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-gray-600 mt-2">
+                    Phase 2 will add more sections - for now, you can export your current progress!
+                  </p>
+                </div>
+              </div>
+              
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                  Ready to Download Your Resume? ✨
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  You&apos;ve created a solid foundation. Export your resume and see your amazing work!
+                </p>
+                <ExportButton
+                  resumeData={resumeData}
+                  completedSections={getCompletedSections()}
+                  disabled={getCompletedSections().length === 0}
+                />
+                
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <strong>Coming in Phase 2:</strong> Live preview, professional templates, and more sections to make your resume even more powerful! 🚀
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </main>
