@@ -1,17 +1,17 @@
 import { z } from 'zod';
 
 export const personalInfoSchema = z.object({
-  firstName: z.string().min(1, "We'd love to know your first name! ✨"),
-  lastName: z.string().min(1, "Your last name helps complete your professional identity 💫"),
-  email: z.string().email("Let's make sure your email looks perfect for employers 📧"),
-  phone: z.string().min(10, "Your phone number helps employers reach you easily 📱"),
-  address: z.string().min(1, "Your address shows employers you're ready to work 🏠"),
-  city: z.string().min(1, "Which wonderful city do you call home? 🌆"),
-  state: z.string().min(1, "Your state helps employers understand your location 🗺️"),
-  zipCode: z.string().min(5, "Your zip code completes your professional address 📍"),
-  linkedIn: z.string().url("Let's make sure your LinkedIn URL is formatted correctly 🔗").optional().or(z.literal("")),
-  website: z.string().url("Your website URL should start with https:// 🌐").optional().or(z.literal("")),
-  summary: z.string().min(50, "Your summary is where you shine! Tell us more about your amazing journey (at least 50 characters) ⭐").max(500, "Let's keep your summary focused and impactful (under 500 characters) 🎯"),
+  firstName: z.string().min(1, "Let's add your first name to get started! ✨"),
+  lastName: z.string().min(1, "Let's complete your name - what's your last name? 💫"),
+  email: z.string().email("Let's polish your email format - it should look like name@example.com 📧"),
+  phone: z.string().min(10, "Let's make sure your phone number is complete so employers can reach you 📱"),
+  address: z.string().min(1, "Let's add your address to show you're ready for opportunities 🏠"),
+  city: z.string().min(1, "Let's add your city - which wonderful place do you call home? 🌆"),
+  state: z.string().min(1, "Let's include your state to complete your location 🗺️"),
+  zipCode: z.string().min(5, "Let's polish your zip code - it helps complete your professional address 📍"),
+  linkedIn: z.string().url("Let's polish your LinkedIn URL - it should start with https:// 🔗").optional().or(z.literal("")),
+  website: z.string().url("Let's polish your website URL - it should start with https:// 🌐").optional().or(z.literal("")),
+  summary: z.string().min(50, "Let's expand your summary a bit more - share more about your amazing journey! ⭐").max(500, "Let's keep your summary focused and impactful - try shortening it just a bit 🎯"),
 });
 
 export const workExperienceSchema = z.object({

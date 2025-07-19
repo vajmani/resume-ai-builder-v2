@@ -88,10 +88,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="Your wonderful first name"
               />
               {errors.firstName && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.firstName.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.firstName.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -105,10 +107,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="Your amazing last name"
               />
               {errors.lastName && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.lastName.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.lastName.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -123,10 +127,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="your.email@example.com"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.email.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.email.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -141,10 +147,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="(555) 123-4567"
               />
               {errors.phone && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.phone.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.phone.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -158,10 +166,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="123 Main Street, Apt 4B"
               />
               {errors.address && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.address.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.address.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -175,10 +185,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="Your beautiful city"
               />
               {errors.city && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.city.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.city.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -192,10 +204,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="CA"
               />
               {errors.state && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.state.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.state.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -209,10 +223,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="12345"
               />
               {errors.zipCode && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.zipCode.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.zipCode.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -226,10 +242,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="https://linkedin.com/in/yourprofile"
               />
               {errors.linkedIn && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.linkedIn.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.linkedIn.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -243,10 +261,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="https://yourwebsite.com"
               />
               {errors.website && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.website.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.website.message}
+                  </p>
+                </div>
               )}
             </div>
 
@@ -286,10 +306,12 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 placeholder="Tell us about your amazing journey and what makes you unique. This is where you shine!"
               />
               {errors.summary && (
-                <p className="mt-1 text-sm text-amber-600 flex items-center">
-                  <span className="mr-1">💡</span>
-                  {errors.summary.message}
-                </p>
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-700 flex items-center">
+                    <span className="mr-2">💙</span>
+                    {errors.summary.message}
+                  </p>
+                </div>
               )}
               <p className="mt-1 text-sm text-gray-500">
                 Share your story - your experience, passion, and what drives you professionally.
