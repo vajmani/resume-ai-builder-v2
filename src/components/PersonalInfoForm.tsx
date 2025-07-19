@@ -62,7 +62,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
           
           <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-700">Section Progress</span>
+              <span className="text-sm font-medium text-gray-700">You&apos;re Building Something Amazing!</span>
               <span className="text-sm font-bold text-blue-600">{progressPercentage}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -73,6 +73,14 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
               />
             </div>
+            <div className="mt-2 text-xs text-gray-600">
+              {progressPercentage === 0 && "Ready to start your amazing journey? ✨"}
+              {progressPercentage > 0 && progressPercentage < 25 && "Great start! You're building momentum! 🌟"}
+              {progressPercentage >= 25 && progressPercentage < 50 && "Fantastic progress! Keep going! 🚀"}
+              {progressPercentage >= 50 && progressPercentage < 75 && "You're more than halfway! Looking amazing! 💫"}
+              {progressPercentage >= 75 && progressPercentage < 100 && "Almost there! Your resume is taking shape beautifully! ✨"}
+              {progressPercentage === 100 && "Incredible! You've created something truly special! 🎉"}
+            </div>
           </div>
         </div>
 
@@ -80,7 +88,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                First Name ✨
+                Your Amazing First Name ✨
               </label>
               <input
                 {...register('firstName')}
@@ -99,7 +107,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Last Name ✨
+                Your Professional Last Name ✨
               </label>
               <input
                 {...register('lastName')}
@@ -118,7 +126,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address 📧
+                Your Professional Email Address 📧
               </label>
               <input
                 {...register('email')}
@@ -138,7 +146,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number 📱
+                Your Contact Number 📱
               </label>
               <input
                 {...register('phone')}
@@ -158,7 +166,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Address 🏠
+                Your Professional Address 🏠
               </label>
               <input
                 {...register('address')}
@@ -177,7 +185,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                City 🌆
+                Your Beautiful City 🌆
               </label>
               <input
                 {...register('city')}
@@ -196,7 +204,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                State 🗺️
+                Your Home State 🗺️
               </label>
               <input
                 {...register('state')}
@@ -215,7 +223,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                ZIP Code 📍
+                Your Area Code 📍
               </label>
               <input
                 {...register('zipCode')}
@@ -234,7 +242,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                LinkedIn Profile 🔗 <span className="text-gray-500">(optional)</span>
+                Your Professional LinkedIn 🔗 <span className="text-gray-500">(showcase your network!)</span>
               </label>
               <input
                 {...register('linkedIn')}
@@ -253,7 +261,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Personal Website 🌐 <span className="text-gray-500">(optional)</span>
+                Your Amazing Website 🌐 <span className="text-gray-500">(show your work!)</span>
               </label>
               <input
                 {...register('website')}
@@ -273,7 +281,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
             <div className="md:col-span-2">
               <div className="flex items-center justify-between mb-2">
                 <label className="block text-sm font-medium text-gray-700">
-                  Professional Summary ⭐
+                  Your Inspiring Professional Story ⭐
                 </label>
                 <div className="flex items-center space-x-2 text-sm">
                   <span className={`font-medium ${
